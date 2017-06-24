@@ -12,6 +12,6 @@ def tweet(string):
 
 def tweetPrettily(positiveTweets, negativeTweets, percentage):
     string = "Negatively charged tweets: " + str(positiveTweets) + "\nPositively charged tweets: " + str(negativeTweets)
-    string = string + "\nPercentage of tweets about Russia: " + percentage
+    string = string + "\nPercentage of tweets about Russia: " + percentage + "%"
     api.update_status(string)
 

@@ -76,10 +76,10 @@ def main():
             if tweet.aboutRussia():
                 aboutRussia += 1
 
-        makeTweet.tweetPrettily(positiveCount, negativeCount, str( int(aboutRussia/len(tweets)* 100) /100))
+        makeTweet.tweetPrettily(positiveCount, negativeCount, str( int((aboutRussia/len(tweets)* 100)*100) /100))
 main()
-schedule.every(5).minutes.do(main) 
+schedule.every().hour.do(main) 
 while True:
     schedule.run_pending()
-    time.sleep(5)
+    time.sleep(1)
 
