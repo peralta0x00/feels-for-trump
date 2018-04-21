@@ -17,37 +17,6 @@ auth = tweepy.OAuthHandler(config[0], config[1])
 auth.set_access_token(config[2], config[3])
 api = tweepy.API(auth)
 
-class tweetObject(object):
-    def __init__(self, tweet):
-        self.text = tweet.lower()
-        russianInvolvement = False
-    def printout(self):
-        print(self.text)    
-    def sentimentValue(self):
-        blob = TextBlob(self.text)
-        if self.text.find("fake news") != -1:
-            return 1
-        return blob.sentiment.polarity
-    def aboutRussia(self):
-        if self.text.find("putin") != -1 or self.text.find("russia") != -1 or self.text.find("vladimir") != -1 or self.text.find("collusion") != -1:
-            return True
-        return False
-    def revertSentiment(self):
-        words = []
-        trumpLoc = notLoc = counter = 0
-        foundIs = False
-        for i in self.text.split(" "):
-            i = i.lower()
-            if i == "trump" or i == "trump's":
-                trumpLoc = counter
-            if (i == "not" or i == "isn't" or i == "isnt") and trumpLoc != 0:
-                notLoc = counter
-                break
-            counter += 1
-        if (trumpLoc and notLoc) != 0 and trumpLoc < notLoc:
-            if trumpLoc > notLoc - 2:
-                return True
-
 class Listener(StreamListener): #main tweeet stream; keeps adding to queue to be processed
     global tweetQueue
     def on_data(self, data):
